@@ -1,9 +1,21 @@
 ﻿namespace MII.PremierProjet;
 
+/// <summary>
+///     Représente un contact.
+/// </summary>
 internal class Contact : object
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    #region Properties
+
+    /// <summary>
+    ///     Obtient ou définit le prénom du contact.
+    /// </summary>
+    public string FirstName { get; set; } = "";
+
+    /// <summary>
+    ///     Obtient ou définit le nom du contact.
+    /// </summary>
+    public string? LastName { get; set; }
 
     #region propfull
     //private string _FirstName;
@@ -24,6 +36,8 @@ internal class Contact : object
     //}
     #endregion
 
+    #endregion
+
     #region Constructors
 
     ////Il existe un constructeur par défaut sans argument.
@@ -35,5 +49,9 @@ internal class Contact : object
     //}
     #endregion
 
+    #region Methods
+
     public override string ToString() => FirstName + " " + LastName;
+
+    #endregion
 }
