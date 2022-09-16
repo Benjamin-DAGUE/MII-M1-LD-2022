@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
+using PremierProjetBlazorServer.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMudServices();
+builder.Services.AddSingleton(sp => new ContactsDataService(".\\data.json"));
+
+//AddSingleton : Instance partagée entre tous les clients
+//AddScopped : Instance unique par client
+//AddTransient : Une nouvelle instance à chaque @inject
 
 var app = builder.Build();
 

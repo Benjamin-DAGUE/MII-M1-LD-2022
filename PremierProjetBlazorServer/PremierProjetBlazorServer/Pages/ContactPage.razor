@@ -1,0 +1,9 @@
+﻿@page "/contacts/{identifier:int}"
+@inject ContactsDataService ContactsDataService
+@inject NavigationManager NavMan;
+
+@if (Contact != null)
+{
+    <p>@Contact.FirstName @Contact.LastName</p>
+    
+}
