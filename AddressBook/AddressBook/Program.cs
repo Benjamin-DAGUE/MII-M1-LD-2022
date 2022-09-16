@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.Json;
 
 namespace AddressBook;
 
@@ -24,7 +25,7 @@ public class Program
 #if DEBUG
         _Contacts = LoadFakeData();
 #else
-		_Contacts = LoadFromFile();//TODO : Ajouter le path
+		_Contacts = LoadFromFile("data.json");
 #endif
 
         bool exit = false;
@@ -64,6 +65,10 @@ public class Program
         } while (exit == false);
 
         #endregion
+
+#if RELEASE
+        SaveToFile(_Contacts, "data.json");
+#endif
     }
 
     #region Save/Load data
@@ -76,7 +81,18 @@ public class Program
     /// <exception cref="NotImplementedException"></exception>
     public static List<Contact> LoadFromFile(string filePath)
     {
-        throw new NotImplementedException();
+        List<Contact> results = new List<Contact>();
+        
+        try
+        {
+            results = JsonSerializer.Deserialize<List<Contact>>(File.ReadAllText(filePath)) ?? results;
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+        return results;
     }
 
     /// <summary>
@@ -85,10 +101,8 @@ public class Program
     /// <param name="contacts">Liste des contacts à sauvegarder.</param>
     /// <param name="filePath">Chemin du fichier.</param>
     /// <exception cref="NotImplementedException"></exception>
-    public static void SaveToFile(List<Contact> contacts, string filePath)
-    {
-        throw new NotImplementedException();
-    }
+    public static void SaveToFile(List<Contact> contacts, string filePath) => 
+        File.WriteAllText(filePath, JsonSerializer.Serialize(contacts));
 
 #if DEBUG
 
@@ -105,7 +119,7 @@ public class Program
 
 #endif
 
-    #endregion
+#endregion
 
     /// <summary>
     ///     Permet la lecture d'un carnet de contacts.
@@ -221,9 +235,7 @@ public class Program
         Console.Clear();
         
         Console.Write("Rechercher dans le prénom : ");
-        Console.Write("Recherche : ");
         string? search = Console.ReadLine();
-
 
         if (string.IsNullOrWhiteSpace(search) == false)
         {
@@ -245,8 +257,7 @@ public class Program
         }
 
         ReadContact(query.ToList(), searchTherms);
-        }
     }
 
-    #endregion
+#endregion
 }
