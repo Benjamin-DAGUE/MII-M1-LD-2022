@@ -216,29 +216,35 @@ public class Program
     /// </summary>
     private static void Search()
     {
-        List<Contact> results = new List<Contact>();
-        
+        IEnumerable<Contact> query = _Contacts;
+        string searchTherms = "";
         Console.Clear();
+        
+        Console.Write("Rechercher dans le prénom : ");
         Console.Write("Recherche : ");
         string? search = Console.ReadLine();
 
 
         if (string.IsNullOrWhiteSpace(search) == false)
         {
-            //Func permet de créer une méthode "inline" : https://docs.microsoft.com/fr-fr/dotnet/api/system.func-2?view=net-6.0
-            //Func<Contact, bool> method =
-            //    (contact) => contact.FirstName?.ToLower()?.Contains(search.ToLower()) == true;
+            string searchFirstName = search;
+            query = query
+                .Where((contact) => contact.FirstName?.ToLower()?.Contains(searchFirstName.ToLower()) == true);
+            searchTherms += $"Prénom : {search}{Environment.NewLine}";
+        }
 
-            //bool result = method.Invoke(_Contacts.First());
+        Console.Write("Rechercher dans le nom : ");
+        search = Console.ReadLine();
 
-            //Where vient de System.Linq et permet de filtrer la liste
-            //results = _Contacts.Where(method).ToList();
+        if (string.IsNullOrWhiteSpace(search) == false)
+        {
+            string searchLastName = search;
+            query = query
+                .Where((contact) => contact.LastName?.ToLower()?.Contains(searchLastName.ToLower()) == true);
+            searchTherms += $"Nom : {search}{Environment.NewLine}";
+        }
 
-            results = _Contacts
-                .Where((contact) => contact.FirstName?.ToLower()?.Contains(search.ToLower()) == true)
-                .ToList();
-
-            ReadContact(results, search);
+        ReadContact(query.ToList(), searchTherms);
         }
     }
 
