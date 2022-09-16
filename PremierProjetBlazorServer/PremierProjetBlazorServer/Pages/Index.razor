@@ -11,14 +11,15 @@
 
     <MudCarousel ItemsSource="ContactsDataService.GetNextBirthdateContacts()" Style="height:200px;" ShowArrows ShowBullets EnableSwipeGesture AutoCycle>
         <ItemTemplate>
-            <div class="d-flex flex-column flex-column justify-center" style="height:100%">
-                <MudText Typo="Typo.h3" Align="@Align.Center" Class="mx-auto">@context.FirstName @context.LastName</MudText>
-                <MudText Typo="Typo.body1" Align="@Align.Center" Class="mx-auto">@context.Birthdate?.ToShortDateString()</MudText>
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" Link="@($"/contacts/{context.Identifier}")">Afficher</MudButton>
-            </div>
+            <ContactCard Contact="@context"/>
         </ItemTemplate>
     </MudCarousel>
 
+    @foreach (var item in ContactsDataService.GetNextBirthdateContacts())
+    {
+        <div @key=item>
 
+        </div>
+    }
 
 </MudContainer>

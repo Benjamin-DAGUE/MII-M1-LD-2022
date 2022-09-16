@@ -1,0 +1,8 @@
+﻿@if (Contact != null)
+{
+    <div class="d-flex flex-column flex-column align-items-center" style="height:100%">
+        <MudText Typo="Typo.h3" Align="@Align.Center" Class="mx-auto">@Contact.FirstName @Contact.LastName</MudText>
+        <MudText Typo="Typo.body1" Align="@Align.Center" Class="mx-auto">@Contact.Birthdate?.ToShortDateString()</MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Link="@($"/contacts/{Contact.Identifier}")">Afficher</MudButton>
+    </div>
+}
