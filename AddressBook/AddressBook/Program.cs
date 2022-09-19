@@ -87,7 +87,7 @@ public class Program
         {
             results = JsonSerializer.Deserialize<List<Contact>>(File.ReadAllText(filePath)) ?? results;
         }
-        catch (Exception ex)
+        catch
         {
 
         }
