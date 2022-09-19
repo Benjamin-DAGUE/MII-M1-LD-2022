@@ -23,7 +23,7 @@ public class ContactsDataService
     public ContactsDataService(string filePath)
     {
         _FilePath = filePath;
-        LoadContacts();
+        _Contacts = LoadContacts();
 
 #if DEBUG
 
@@ -71,7 +71,14 @@ public class ContactsDataService
 
     public List<Contact> GetNextBirthdateContacts() => _Contacts; //TODO : Filtrer les trois prochains anniversaires.
 
-    public void AddContact(Contact contact) => _Contacts.Add(contact);
+    public Contact CreateContact()
+    {
+        Contact contact = new Contact();
+        contact.Identifier = _Contacts.Any() ? _Contacts.Max(c => c.Identifier) + 1 : 1;
+        _Contacts.Add(contact);
+
+        return contact;
+    }
 
     public void DeleteContact(Contact contact) => _Contacts.Remove(contact);
 

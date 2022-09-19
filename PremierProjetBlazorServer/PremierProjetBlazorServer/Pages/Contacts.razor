@@ -1,4 +1,19 @@
 ﻿@page "/contacts" 
+@inject ContactsDataService ContactsDataService
 
+@if(Items != null) {
 
+    <MudTable Items="Items" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+        <HeaderContent>
+            <MudTh>Prénom</MudTh>
+            <MudTh>Nom</MudTh>
+            <MudTh>Email</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Nr">@context.FirstName</MudTd>
+            <MudTd DataLabel="Sign">@context.LastName</MudTd>
+            <MudTd DataLabel="Name">@context.Email</MudTd>
+        </RowTemplate>
+    </MudTable>
 
+}

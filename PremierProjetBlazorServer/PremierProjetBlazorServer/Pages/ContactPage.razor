@@ -4,6 +4,46 @@
 
 @if (Contact != null)
 {
-    <p>@Contact.FirstName @Contact.LastName</p>
-    
+    <MudGrid Class="py-5">
+        <MudItem xs="12" md="6" xxl="4">
+            
+            <MudCard>
+                <MudCardContent>
+                    <MudForm @bind-IsValid=_IsFormValid>
+                        <MudTextField T="string" Label="Prénom" Required="true" RequiredError="Le prénom est obligatoire" Immediate
+                                  @bind-Value=@Contact.FirstName />
+
+                        <MudTextField T="string" Label="Nom" Required="true" RequiredError="Le nom est obligatoire" Immediate
+                                  @bind-Value=@Contact.LastName />
+
+                        <MudDatePicker @ref="_BirthdatePicker" Label="Date de naissance" @bind-Date="@Contact.Birthdate" AutoClose>
+                            <PickerActions>
+                                <MudButton OnClick="@(() => _BirthdatePicker?.Clear())">Effacer</MudButton>
+                            </PickerActions>
+                        </MudDatePicker>
+
+                        <MudTextField T="string" Label="Email" Required="true" RequiredError="L'email est obligatoire" Immediate
+                                  @bind-Value=@Contact.Email />
+
+                    </MudForm>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="OnSaveButtonClicked" Disabled=@(_IsFormValid == false)>
+                        @if(IsAddContact) {
+                            <span>Ajouter</span>
+                        }
+                        else {
+                            <span>Enregistrer</span>
+                        }
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+
+}
+
+@code {
+    private bool _IsFormValid;
+    MudDatePicker? _BirthdatePicker;
 }

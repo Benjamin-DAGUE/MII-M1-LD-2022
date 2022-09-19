@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddMudServices();
+builder.Services.AddMudServices(new MudServicesConfiguration());
 builder.Services.AddSingleton(sp => new ContactsDataService(".\\data.json"));
 
 //AddSingleton : Instance partagée entre tous les clients

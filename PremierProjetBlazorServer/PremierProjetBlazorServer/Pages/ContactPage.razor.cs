@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using PremierProjetBlazorServer.Model;
 
 namespace PremierProjetBlazorServer.Pages;
@@ -10,7 +11,9 @@ public partial class ContactPage
     [Parameter()]
     public int Identifier { get; set; }
 
-    public Contact? Contact { get; set;}
+    private Contact? Contact { get; set; }
+
+    private bool IsAddContact { get; set; }
 
     #endregion
 
@@ -18,11 +21,29 @@ public partial class ContactPage
 
     protected override void OnParametersSet()
     {
-        Contact = ContactsDataService.GetContact(Identifier);
-
-        if (Contact == null)
+        if (Identifier != 0)
         {
-            NavMan.NavigateTo("/contacts");
+            Contact = ContactsDataService.GetContact(Identifier);
+
+            if (Contact == null)
+            {
+                NavMan.NavigateTo("/contacts");
+            }
+        }
+        else
+        {
+            IsAddContact = true;
+            Contact = ContactsDataService.CreateContact();
+        }
+    }
+
+    private void OnSaveButtonClicked(MouseEventArgs args)
+    {
+        if (Contact != null)
+        {
+            ContactsDataService.SaveChanges();
+            IsAddContact = false;
+            NavMan.NavigateTo($"/contacts/{Contact.Identifier}");
         }
     }
 

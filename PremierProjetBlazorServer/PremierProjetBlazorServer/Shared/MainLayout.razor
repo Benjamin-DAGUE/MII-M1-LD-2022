@@ -7,16 +7,24 @@
 
 <MudLayout>
     <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+                       OnClick="@((e) => _DrawerOpen = !_DrawerOpen)" />
         MudContacts
     </MudAppBar>
-    <MudDrawer Open="true">
+    <MudDrawer @bind-Open="@_DrawerOpen">
         <MudNavMenu>
-            <MudNavLink Href="/"            Match="NavLinkMatch.All">Accueil</MudNavLink>
-            <MudNavLink Href="/contacts"    Match="NavLinkMatch.Prefix">Mes contacts</MudNavLink>
-            <MudNavLink Href="/about"       Match="NavLinkMatch.All">A propos</MudNavLink>
+            <MudNavLink Href="/" Match="NavLinkMatch.All">Accueil</MudNavLink>
+            <MudNavLink Href="/contacts" Match="NavLinkMatch.Prefix">Mes contacts</MudNavLink>
+            <MudNavLink Href="/about" Match="NavLinkMatch.All">A propos</MudNavLink>
         </MudNavMenu>
     </MudDrawer>
     <MudMainContent>
-        @Body
+        <MudContainer Fixed>
+            @Body
+        </MudContainer>
     </MudMainContent>
 </MudLayout>
+
+@code {
+    bool _DrawerOpen = true;
+}

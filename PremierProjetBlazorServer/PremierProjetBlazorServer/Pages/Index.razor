@@ -3,23 +3,20 @@
 
 <PageTitle>Accueil</PageTitle>
 
-<MudContainer Fixed="true">
-    <MudText Typo="Typo.h2">Accueil</MudText>
-    <MudText Typo="Typo.body1">Bienvenue sur MudContacts !</MudText>
+<MudText Typo="Typo.h2">Accueil</MudText>
+<MudText Typo="Typo.body1">Bienvenue sur MudContacts !</MudText>
 
-    <MudText Typo="Typo.h2">C'est bientôt l'anniversaire de...</MudText>
+<MudText Typo="Typo.h2">C'est bientôt l'anniversaire de...</MudText>
 
-    <MudCarousel ItemsSource="ContactsDataService.GetNextBirthdateContacts()" Style="height:200px;" ShowArrows ShowBullets EnableSwipeGesture AutoCycle>
-        <ItemTemplate>
-            <ContactCard Contact="@context"/>
-        </ItemTemplate>
-    </MudCarousel>
+<MudCarousel ItemsSource="ContactsDataService.GetNextBirthdateContacts()" Style="height:200px;" ShowArrows ShowBullets EnableSwipeGesture AutoCycle>
+    <ItemTemplate>
+        <ContactCard Contact="@context" />
+    </ItemTemplate>
+</MudCarousel>
 
-    @foreach (var item in ContactsDataService.GetNextBirthdateContacts())
-    {
-        <div @key=item>
+@foreach (var item in ContactsDataService.GetNextBirthdateContacts())
+{
+    <div @key=item>
+    </div>
+}
 
-        </div>
-    }
-
-</MudContainer>
