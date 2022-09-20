@@ -1,0 +1,9 @@
+﻿<div class="d-flex flex-column align-center gap-4">
+    <div class="d-flex flex-row">
+        @for (int i = 0; i < 5; i++)
+        {
+            <MudPaper Class="@($"px-6 py-2 mx-2 mb-6 bg-{GetClassForColorResultAtIndex(i)}")"
+                  Elevation="1" />
+        }
+    </div>
+</div>

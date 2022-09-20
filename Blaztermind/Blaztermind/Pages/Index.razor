@@ -1,12 +1,26 @@
 ﻿@page "/"
+@inject ISnackbar Snackbar;
 
+<div class="d-flex flex-column flex-grow-1 full-height">
 
-<CombinationPicker CombinationValidated="@CombinationValidated" />
-
-@code {
-    private void CombinationValidated(Combination combination)
+    @if (Cheat)
     {
-     //Cette méthode est déclenchée lorsque l'utilisateur valide une combinaison.   
-     //TODO : Il faut historiser le choix et le comparer à une combinaison aléatoire.
+        <CombinationPicker SelectedCombination="RandomCombination" IsReadOnly />
     }
-}
+
+    <div class="flex-grow-1" style="overflow:auto">
+        @for (int i = Combinations.Count - 1; i >= 0; i--)
+        {
+            <CombinationPicker SelectedCombination="Combinations[i]" IsReadOnly />
+            <CombinationComparer SelectedCombination="Combinations[i]" SolutionCombination="RandomCombination" />
+        }
+    </div>
+
+    <MudPaper Elevation="3">
+        <div class="my-2">
+            <CombinationPicker CombinationValidated="@CombinationValidated" />
+        </div>
+    </MudPaper>
+
+
+</div>

@@ -23,6 +23,12 @@ public partial class CombinationPicker
 	[Parameter]
     public EventCallback<Combination> CombinationValidated { get; set; }
 
+	/// <summary>
+	///		Obtient ou définit si le composant est en lecture seule.
+	/// </summary>
+	[Parameter]
+	public bool IsReadOnly { get; set; }
+
 	#endregion
 
 	#region Methods
@@ -30,12 +36,15 @@ public partial class CombinationPicker
 	/// <summary>
 	///		Déclenchée lorsque le bouton de validation est cliqué.
 	/// </summary>
-	/// <param name="args"></param>
+	/// <param name="args">Argument du clic.</param>
 	private void OnValidatedClicked(MouseEventArgs args)
 	{
-        Combination c = SelectedCombination;
-        CombinationValidated.InvokeAsync(c);
-        SelectedCombination = new Combination();
+		if (IsReadOnly == false)
+        {
+            Combination c = SelectedCombination;
+            CombinationValidated.InvokeAsync(c);
+            SelectedCombination = new Combination();
+        }
     }
 
 	#endregion

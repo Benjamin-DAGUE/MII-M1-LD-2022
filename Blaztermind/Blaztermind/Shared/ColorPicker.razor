@@ -1,15 +1,22 @@
 ﻿
 <div class="d-flex flex-column align-center ma-2">
-    <MudFab Size="Size.Small"
+    @if (IsReadOnly == false)
+    {
+        <MudFab Size="Size.Small"
             Color="Color.Primary"
             StartIcon="@Icons.Material.Filled.ArrowUpward"
             OnClick="SelectPreviousColor" />
 
+    }
+
     <MudPaper Class="@($"pa-6 my-2 bg-{Enum.GetName(typeof(GameColor), SelectedColor)?.ToLower()}")"
               Elevation="3" />
 
-    <MudFab Size="Size.Small"
+    @if (IsReadOnly == false)
+    {
+        <MudFab Size="Size.Small"
             Color="Color.Primary"
             StartIcon="@Icons.Material.Filled.ArrowDownward"
             OnClick="SelectNextColor" />
+    }
 </div>

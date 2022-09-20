@@ -23,6 +23,12 @@ public partial class ColorPicker
 	[Parameter]
 	public EventCallback<GameColor> SelectedColorChanged { get; set; }
 
+    /// <summary>
+    ///     Obtient ou définit si la couleur est en lecture seule.
+    /// </summary>
+    [Parameter]
+    public bool IsReadOnly { get; set; }
+
     #endregion
 
     #region Methods
@@ -33,8 +39,11 @@ public partial class ColorPicker
     /// <param name="args"></param>
     private void SelectNextColor(MouseEventArgs args)
 	{
-        SelectedColor = SelectedColor == GameColor.Blue ? GameColor.White : (GameColor)((int)SelectedColor + 1);
-        SelectedColorChanged.InvokeAsync(SelectedColor);
+        if (IsReadOnly == false)
+        {
+            SelectedColor = SelectedColor == GameColor.Blue ? GameColor.White : (GameColor)((int)SelectedColor + 1);
+            SelectedColorChanged.InvokeAsync(SelectedColor);
+        }
     }
 
 	/// <summary>
@@ -43,8 +52,11 @@ public partial class ColorPicker
 	/// <param name="args"></param>
     private void SelectPreviousColor(MouseEventArgs args)
     {
-        SelectedColor = SelectedColor == GameColor.White ? GameColor.Blue : (GameColor)((int)SelectedColor - 1);
-        SelectedColorChanged.InvokeAsync(SelectedColor);
+        if (IsReadOnly == false)
+        {
+            SelectedColor = SelectedColor == GameColor.White ? GameColor.Blue : (GameColor)((int)SelectedColor - 1);
+            SelectedColorChanged.InvokeAsync(SelectedColor);
+        }
     }
 
     #endregion
