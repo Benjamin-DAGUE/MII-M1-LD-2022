@@ -1,0 +1,12 @@
+﻿@page "/"
+
+
+<CombinationPicker CombinationValidated="@CombinationValidated" />
+
+@code {
+    private void CombinationValidated(Combination combination)
+    {
+     //Cette méthode est déclenchée lorsque l'utilisateur valide une combinaison.   
+     //TODO : Il faut historiser le choix et le comparer à une combinaison aléatoire.
+    }
+}

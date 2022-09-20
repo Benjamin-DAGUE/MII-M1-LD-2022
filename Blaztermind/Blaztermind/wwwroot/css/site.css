@@ -1,0 +1,24 @@
+/*
+    Les classes bg-<color> vont être utilisée pour afficher 
+    une couleur sélectionnée en fond.
+*/
+
+.bg-white {
+    background-color: ghostwhite !important
+}
+
+.bg-black {
+    background-color: dimgray !important
+}
+
+.bg-red {
+    background-color: tomato !important
+}
+
+.bg-green {
+    background-color: lightseagreen !important
+}
+
+.bg-blue {
+    background-color: cornflowerblue !important
+}
