@@ -1,0 +1,24 @@
+﻿
+@TextValue
+
+<button @onclick=@ButtonClicked></button>
+
+
+@code {
+
+    [Parameter]
+    public string? TextValue { get; set; }
+
+    [Parameter]
+    public EventCallback<string> TextValueChanged { get; set; }
+
+    [Parameter]
+    public EventCallback OnButtonClicked { get; set; }
+
+    private void ButtonClicked(MouseEventArgs args)
+    {
+        TextValueChanged.InvokeAsync("Hello world");
+        OnButtonClicked.InvokeAsync(14);
+    }
+
+}

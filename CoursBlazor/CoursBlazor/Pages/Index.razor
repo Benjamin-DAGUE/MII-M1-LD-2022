@@ -1,0 +1,29 @@
+﻿@page "/"
+@page "/{Text}"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+
+
+<MonComposant @bind-TextValue=@Text/>
+
+<span style="color:orange" >@Text</span>
+
+@Param
+
+<UserChoice/>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+
+    [Parameter]
+    public string? Text { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "param")]
+    public string? Param { get; set; }
+
+}

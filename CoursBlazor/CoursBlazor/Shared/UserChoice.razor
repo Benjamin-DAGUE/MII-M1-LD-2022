@@ -1,0 +1,16 @@
+﻿
+<ColorPicker @bind-ColorNumber=@Color1 />
+<ColorPicker @bind-ColorNumber=@Color2 />
+<ColorPicker @bind-ColorNumber=@Color3 />
+<ColorPicker />
+<ColorPicker />
+
+@($"{Color1}{Color2}{Color3}")
+
+@code {
+
+    public int Color1 { get; set; }
+    public int Color2 { get; set; }
+    public int Color3 { get; set; }
+
+}

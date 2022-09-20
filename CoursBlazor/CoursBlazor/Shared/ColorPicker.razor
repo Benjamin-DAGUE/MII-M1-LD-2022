@@ -1,0 +1,36 @@
+﻿
+<div class="border-2 border border-primary" style="@Style">
+
+</div>
+
+<button @onclick=@OnClick>BOUTON</button>
+
+@code {
+    private string Style { get; set; } = "width:50px;height:50px;background-color:white";
+
+    [Parameter]
+    public GameColor ColorNumber { get; set; } = 0;
+
+    [Parameter]
+    public EventCallback<GameColor> ColorNumberChanged { get; set; }
+
+    private void OnClick(MouseEventArgs args)
+    {
+        ColorNumber = (int)ColorNumber + 1 >= 5 ? 0 : ColorNumber + 1;
+        ColorNumberChanged.InvokeAsync(ColorNumber);
+        
+        
+        //Style = $"width:50px;height:50px;background-color:{Enum.GetName(typeof(GameColor), ColorNumber)}";
+
+
+        Style = ColorNumber switch
+        {
+            GameColor.White => "width:50px;height:50px;background-color:white",
+            GameColor.Red => "width:50px;height:50px;background-color:red",
+            GameColor.Green => "width:50px;height:50px;background-color:green",
+            GameColor.Blue => "width:50px;height:50px;background-color:blue",
+            GameColor.Black => "width:50px;height:50px;background-color:black",
+            _ => "width:50px;height:50px"
+        };
+    }
+}
