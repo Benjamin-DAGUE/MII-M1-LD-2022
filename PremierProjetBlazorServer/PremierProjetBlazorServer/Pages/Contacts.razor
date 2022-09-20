@@ -1,16 +1,31 @@
-﻿@page "/contacts" 
+﻿@page "/contacts"
 @inject ContactsDataService ContactsDataService
 
-@if(Items != null) {
+@if (Items != null)
+{
 
     <MudTable Items="Items" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+        <ToolBarContent>
+            <MudIconButton Icon="@Icons.Material.Filled.Add" Link="@($"/Contacts/0")"></MudIconButton>
+        </ToolBarContent>
+        <ColGroup>
+            <col style="width: 150px;" />
+            <col />
+            <col />
+            <col />
+        </ColGroup>
         <HeaderContent>
+            <MudTh></MudTh>
             <MudTh>Prénom</MudTh>
             <MudTh>Nom</MudTh>
             <MudTh>Email</MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd DataLabel="Nr">@context.FirstName</MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Edit" Link="@($"/Contacts/{context.Identifier}")"></MudIconButton>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="@((e) => DeleteContact(context))"></MudIconButton>
+            </MudTd>
+            <MudTd DataLabel="Sign">@context.FirstName</MudTd>
             <MudTd DataLabel="Sign">@context.LastName</MudTd>
             <MudTd DataLabel="Name">@context.Email</MudTd>
         </RowTemplate>

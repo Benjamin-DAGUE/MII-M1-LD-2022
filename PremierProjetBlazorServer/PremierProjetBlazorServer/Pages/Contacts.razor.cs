@@ -19,5 +19,15 @@ public partial class Contacts
         Items = ContactsDataService.GetAllContacts();
 	}
 
+	private void DeleteContact(Contact contact)
+	{
+		if (Items != null)
+		{
+			Items.Remove(contact);
+			ContactsDataService.DeleteContact(contact);
+			ContactsDataService.SaveChanges();
+		}
+    }
+
 	#endregion
 }

@@ -1,6 +1,7 @@
 ﻿@page "/contacts/{identifier:int}"
 @inject ContactsDataService ContactsDataService
 @inject NavigationManager NavMan;
+@inject ISnackbar SnackbarService;
 
 @if (Contact != null)
 {

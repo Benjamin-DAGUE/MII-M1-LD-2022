@@ -33,7 +33,7 @@ public partial class ContactPage
         else
         {
             IsAddContact = true;
-            Contact = ContactsDataService.CreateContact();
+            Contact = new Contact();
         }
     }
 
@@ -41,12 +41,23 @@ public partial class ContactPage
     {
         if (Contact != null)
         {
-            ContactsDataService.SaveChanges();
-            IsAddContact = false;
-            NavMan.NavigateTo($"/contacts/{Contact.Identifier}");
+            try
+            {
+                if (IsAddContact)
+                {
+                    ContactsDataService.AddContact(Contact);
+                }
+                ContactsDataService.SaveChanges();
+                SnackbarService.Add($"Le contact a bien été {(IsAddContact ? "ajouté" : "enregistré")}.", MudBlazor.Severity.Success);
+                IsAddContact = false;
+                NavMan.NavigateTo($"/contacts/{Contact.Identifier}");
+            }
+            catch
+            {
+                SnackbarService.Add("Erreur lors de la sauvegarde.", MudBlazor.Severity.Error);
+            }
         }
     }
 
     #endregion
-
 }
