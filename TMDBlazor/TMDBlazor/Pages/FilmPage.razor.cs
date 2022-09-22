@@ -6,7 +6,7 @@ namespace TMDBlazor.Pages;
 /// <summary>
 ///		Page d'un film.
 /// </summary>
-public partial class FilmPage
+public partial class FilmPage : ComponentBase
 {
 	#region Properties
 

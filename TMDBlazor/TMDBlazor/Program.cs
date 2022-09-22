@@ -10,7 +10,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddMudServices();
 //On ajoute le client TMDb comme un service, il peut être récupérer par injection.
-builder.Services.AddTransient((sp) => new TMDbClient("INSERT-YOUR-KEY"));
+builder.Services.AddTransient((sp) => new TMDbClient("64666a076c698d202fab5f0fd6dce32b"));
 
 
 var app = builder.Build();

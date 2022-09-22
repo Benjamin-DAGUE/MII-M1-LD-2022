@@ -1,0 +1,29 @@
+﻿@typeparam T
+
+@foreach(T item in Items)
+{
+    @if(DisplayMemberPath != null)
+    {
+        @*
+            Il est possible de récupérer par réflexion (System.Reflexion) le type d'un objet.
+            La classe System.Type permet de récupérer la structure d'une classe.
+            Il est alors possible de récupérer une propriété ou une méthode et de l'invoquer sur un objet donné.*@
+        <p>@item?.GetType()?.GetProperty(DisplayMemberPath)?.GetValue(item)</p>
+    }
+    else if(DisplaySelector != null)
+    {
+        @*
+            Autrement, on peut utiliser une Func<T, string> pour permettre à l'utilisateur
+            de spécifier une méthode pour retourner le texte à afficher.
+        *@
+        <p>@DisplaySelector(item)</p>
+    }
+    else if(ItemTemplate != null)
+    {
+        @*
+            Ou encore d'utiliser un RenderFragment pour permettre à l'utilisateur
+            de créer un template graphique pour représenter un élément.
+        *@
+        @ItemTemplate(item)
+    }
+}

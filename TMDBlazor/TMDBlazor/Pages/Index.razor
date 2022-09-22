@@ -1,5 +1,20 @@
 ﻿@page "/"
+@using TMDbLib.Objects.Movies
+@inject TMDbClient DataClient
 
 <PageTitle>Index</PageTitle>
 
 <MudButton Link="/film/47964" Variant="Variant.Filled">Go to film</MudButton>
+
+<h3>DisplayMemberPath</h3>
+<DataGrid T=Movie Items="@Movies" DisplayMemberPath="Title"></DataGrid>
+
+<h3>DisplaySelector</h3>
+<DataGrid T=Movie Items="@Movies" DisplaySelector=@(m => m.Title)></DataGrid>
+
+<h3>ItemTemplate</h3>
+<DataGrid T=Movie Items="@Movies">
+    <ItemTemplate Context="myMovie">
+        <MyTextField Text=@myMovie.Title></MyTextField>
+    </ItemTemplate>
+</DataGrid>
