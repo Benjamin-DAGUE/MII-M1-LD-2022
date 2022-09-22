@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDBlazor", "TMDBlazor\TMDBlazor.csproj", "{454DA4EB-7C09-412D-A778-84215876BC44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{454DA4EB-7C09-412D-A778-84215876BC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454DA4EB-7C09-412D-A778-84215876BC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454DA4EB-7C09-412D-A778-84215876BC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454DA4EB-7C09-412D-A778-84215876BC44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BCB2E994-78E8-4DAB-AF70-2B97703033B1}
+	EndGlobalSection
+EndGlobal

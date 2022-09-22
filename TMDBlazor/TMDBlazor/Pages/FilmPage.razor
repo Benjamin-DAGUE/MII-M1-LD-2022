@@ -1,0 +1,10 @@
+﻿@page "/film/{identifier:int}"
+@inject TMDbClient DataClient
+
+@Identifier
+
+
+@if(Movie != null)
+{
+    @Movie.Title
+}
