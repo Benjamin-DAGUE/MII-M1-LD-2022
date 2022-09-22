@@ -1,10 +1,16 @@
 ﻿<div class="d-flex flex-column align-center gap-4">
     <div class="d-flex flex-row">
-        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color1 IsReadOnly=@IsReadOnly/>
-        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color2 IsReadOnly=@IsReadOnly/>
-        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color3 IsReadOnly=@IsReadOnly/>
-        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color4 IsReadOnly=@IsReadOnly/>
-        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color5 IsReadOnly=@IsReadOnly/>
+        @*Ceci est l'équivalent d'un @bind :
+            - On descend la valeur du paramètre avec SelectedColor
+            - On récupère la valeur avec l'événement SelectedColorChanged
+        *@
+        <ColorPicker SelectedColor=@SelectedCombination.Color1
+                     SelectedColorChanged="@(c => SelectedCombination.Color1 = c)" 
+                     IsReadOnly=@IsReadOnly />
+        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color2 IsReadOnly=@IsReadOnly />
+        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color3 IsReadOnly=@IsReadOnly />
+        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color4 IsReadOnly=@IsReadOnly />
+        <ColorPicker @bind-SelectedColor=@SelectedCombination.Color5 IsReadOnly=@IsReadOnly />
     </div>
     @if (IsReadOnly == false)
     {
